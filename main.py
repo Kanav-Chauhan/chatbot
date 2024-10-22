@@ -2,9 +2,14 @@ import streamlit as st
 import random
 from transformers import BloomTokenizerFast, BloomForCausalLM, pipeline
 
-# Load the BLOOM tokenizer and model
-tokenizer = BloomTokenizerFast.from_pretrained("bigscience/bloom-560m")
-model = BloomForCausalLM.from_pretrained("bigscience/bloom-560m")
+# # Load the BLOOM tokenizer and model
+# tokenizer = BloomTokenizerFast.from_pretrained("bigscience/bloom-560m")
+# model = BloomForCausalLM.from_pretrained("bigscience/bloom-560m")
+
+
+# Load a smaller model instead of BLOOM-560m
+tokenizer = AutoTokenizer.from_pretrained("distilgpt2")
+model = AutoModelForCausalLM.from_pretrained("distilgpt2")
 
 # Load the emotion analyzer
 emotion_analyzer = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base", return_all_scores=True)
